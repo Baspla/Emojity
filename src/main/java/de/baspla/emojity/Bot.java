@@ -403,6 +403,7 @@ public class Bot extends TelegramLongPollingBot {
                         for (int i = 0; i < words.size(); i++) {
                             if (words.get(i).equalsIgnoreCase(args[1])) {
                                 words.remove(i);
+                                send(message.getChatId(), args[1]+" wurde entfernt.");
                             }
                         }
                     } else {
@@ -411,9 +412,11 @@ public class Bot extends TelegramLongPollingBot {
                     }
                 } else {
                     for (int i = 0; i < args.length; i++) {
-                        if (!words.contains(args[i])) {
+                        if (!words.contains(args[i])&&!args[i].isEmpty()) {
                             words.add(args[i]);
                             send(message.getChatId(), args[i]+" wurde hinzgefügt.");
+                        }else{
+                            send(message.getChatId(), args[i]+" gibt es schon.");
                         }
                     }
                 }
