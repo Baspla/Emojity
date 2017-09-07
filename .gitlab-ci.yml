@@ -1,0 +1,16 @@
+image: maven:3-jdk-8
+
+before_script:
+  - apt-get --quiet update --yes
+  - apt-get --quiet install openssh-client sshpass --yes
+
+build:
+  script:
+   - mvn package -B
+
+deploy:
+  script:
+   - mvn clean package -B
+   - sshpass -p $password ssh -o StrictHostKeyChecking=no $user@$hostname 'rm -f ~/emojity-1.0.0.jar'
+   - sshpass -p $password scp -o StrictHostKeyChecking=no target/emojity-1.0.0.jar $user@$hostname:~/.
+   - sshpass -p $password ssh -o StrictHostKeyChecking=no $user@$hostname 'sudo ~/reloademojity.sh'

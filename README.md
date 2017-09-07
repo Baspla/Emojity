@@ -1,0 +1,1 @@
+<a href="http://gitlab.lgsit.de/bots/emojity/commits/master"><img alt="build status" src="http://gitlab.lgsit.de/bots/emojity/badges/master/build.svg" /></a>
