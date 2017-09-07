@@ -387,7 +387,7 @@ public class Bot extends TelegramLongPollingBot {
             File f = new File("words.csv");
             f.createNewFile();
             StringTokenizer token = new StringTokenizer(new String(Files.readAllBytes(f.toPath())), ",");
-            for (int i = 0; i < token.countTokens(); i++) {
+            while(token.hasMoreTokens()){
                 words.add(token.nextToken());
             }
             if (args.length >= 1) {
@@ -406,13 +406,14 @@ public class Bot extends TelegramLongPollingBot {
                             }
                         }
                     } else {
-                        send(message.getChatId(), "Bitte gib ein Wort ein");
+                        send(message.getChatId(), "Bitte gib ein Wort ein.");
                         return;
                     }
                 } else {
                     for (int i = 0; i < args.length; i++) {
                         if (!words.contains(args[i])) {
                             words.add(args[i]);
+                            send(message.getChatId(), args[i]+" wurde hinzgefügt.");
                         }
                     }
                 }
@@ -427,7 +428,7 @@ public class Bot extends TelegramLongPollingBot {
                     writer.close();
                 }
             } else {
-                send(message.getChatId(), "Bitte gib ein Wort oder remove/list ein");
+                send(message.getChatId(), "Bitte gib ein Wort oder remove/list ein.");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -549,7 +550,7 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
-    public static boolean hasOnlyEmoji(String username) {
+    static boolean hasOnlyEmoji(String username) {
         String txt = EmojiParser.removeAllEmojis(username);
         txt = removeAdditionalChars(txt);
         return txt.isEmpty();
