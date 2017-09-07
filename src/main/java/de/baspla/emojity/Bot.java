@@ -419,7 +419,7 @@ public class Bot extends TelegramLongPollingBot {
                     }
                 } else {
                     for (int i = 0; i < args.length; i++) {
-                        if (!words.contains(args[i])&&!args[i].isEmpty()&&args[i].replaceAll("[^A-Za-z]","").isEmpty()) {
+                        if (!words.contains(args[i])&&!args[i].isEmpty()&&args[i].matches("[a-zA-Z]+")) {
                             words.add(args[i]);
                             send(message.getChatId(), args[i]+" wurde hinzgefügt.");
                         }else{
