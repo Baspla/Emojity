@@ -387,7 +387,7 @@ public class Bot extends TelegramLongPollingBot {
             File f = new File("words.csv");
             f.createNewFile();
             StringTokenizer token = new StringTokenizer(new String(Files.readAllBytes(f.toPath())), ",");
-            for (int i = 0; i < words.size(); i++) {
+            for (int i = 0; i < token.countTokens(); i++) {
                 words.add(token.nextToken());
             }
             if (args.length >= 1) {
