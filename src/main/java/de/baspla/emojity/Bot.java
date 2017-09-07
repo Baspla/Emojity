@@ -394,7 +394,14 @@ public class Bot extends TelegramLongPollingBot {
                 if (args[0].equalsIgnoreCase("list")) {
                     String txt = "Wörter:\n";
                     for (int i = 0; i < words.size(); i++) {
-                        txt = txt + words.get(i) + "\n";
+                        txt = txt + words.get(i) + " \n";
+                    }
+                    send(message.getChatId(), txt);
+                    return;
+                } else if (args[0].equalsIgnoreCase("listformat")) {
+                    String txt = "";
+                    for (int i = 0; i < words.size(); i++) {
+                        txt = txt + words.get(i) + " ";
                     }
                     send(message.getChatId(), txt);
                     return;
@@ -412,11 +419,11 @@ public class Bot extends TelegramLongPollingBot {
                     }
                 } else {
                     for (int i = 0; i < args.length; i++) {
-                        if (!words.contains(args[i])&&!args[i].isEmpty()) {
+                        if (!words.contains(args[i])&&!args[i].isEmpty()&&args[i].replaceAll("[^A-Za-z]","").isEmpty()) {
                             words.add(args[i]);
                             send(message.getChatId(), args[i]+" wurde hinzgefügt.");
                         }else{
-                            send(message.getChatId(), args[i]+" gibt es schon.");
+                            send(message.getChatId(), args[i]+" gibt es schon / nicht erlaubt.");
                         }
                     }
                 }
