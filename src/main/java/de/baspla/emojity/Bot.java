@@ -401,7 +401,7 @@ public class Bot extends TelegramLongPollingBot {
                         "Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberuehrt. Eine diesbezuegliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung moeglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.\n" +
                         "\n" +
                         "<b>Haftung fuer Links</b>\n" +
-                        "Unser Angebot enthaelt Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir fuer diese fremden Inhalte auch keine Gewaehr uebernehmen. Fuer die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstösse ueberprueft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.\n" +
+                        "Unser Angebot enthaelt Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb koennen wir fuer diese fremden Inhalte auch keine Gewaehr uebernehmen. Fuer die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf moegliche Rechtsverstoesse ueberprueft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.\n" +
                         "Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.\n" +
                         "\n" +
                         "<b>Urheberrecht</b>\n" +
@@ -409,16 +409,16 @@ public class Bot extends TelegramLongPollingBot {
                         "Soweit die Inhalte in diesem Bot nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.\n" +
                         "\n" +
                         "<b>Datenschutz</b>\n" +
-                        "Die Betreiber dieses Bot nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklaerung.\n" +
-                        "Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit in unserem Bot personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrueckliche Zustimmung nicht an Dritte weitergegeben.\n" +
-                        "Wir weisen darauf hin, dass die Datenuebertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitsluecken aufweisen kann. Ein lueckenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.\n" +
+                        "Die Betreiber dieses Bot nehmen den Schutz Ihrer persoenlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklaerung.\n" +
+                        "Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten moeglich. Soweit in unserem Bot personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit moeglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrueckliche Zustimmung nicht an Dritte weitergegeben.\n" +
+                        "Wir weisen darauf hin, dass die Datenuebertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitsluecken aufweisen kann. Ein lueckenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht moeglich.\n" +
                         "\n" +
-                        "<b>Recht auf Auskunft, Löschung, Sperrung</b>\n" +
-                        "Sie haben jederzeit das Recht auf unentgeltliche Auskunft ueber Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfaenger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden.\n" +
+                        "<b>Recht auf Auskunft, Loeschung, Sperrung</b>\n" +
+                        "Sie haben jederzeit das Recht auf unentgeltliche Auskunft ueber Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfaenger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung oder Loeschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten koennen Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden.\n" +
                         "\n" +
                         "<b>Widerspruch Werbe-Mails</b>\n" +
-                        "Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten zur uebersendung von nicht ausdruecklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen. Die Betreiber des Bots behalten sich ausdruecklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-E-Mails, vor.";
-                        Files.write(f.toPath(),t.getBytes());
+                        "Der Nutzung von im Rahmen der Impressumspflicht veroeffentlichten Kontaktdaten zur Uebersendung von nicht ausdruecklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen. Die Betreiber des Bots behalten sich ausdruecklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-E-Mails, vor.";
+                Files.write(f.toPath(),t.getBytes());
             }
             String txt = new String(Files.readAllBytes(f.toPath()));
             send(message.getChatId(),
