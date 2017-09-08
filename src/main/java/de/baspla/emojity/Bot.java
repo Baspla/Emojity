@@ -37,6 +37,7 @@ public class Bot extends TelegramLongPollingBot {
     private String BOTTOKEN;
     private ArrayList<Lobby> lobbys;
     private SessionFactory sessionFactory;
+    public boolean testmode = false;
 
     public Bot(String name, String token) {
         this.BOTNAME = name;
@@ -103,6 +104,10 @@ public class Bot extends TelegramLongPollingBot {
                     }
                     answer.setText((c + 1) + " Lobbys wurden geschlossen");
 
+                    break;
+                case "testmode":
+                    testmode = !testmode;
+                    answer.setText("TestMode wurde " + (testmode ? "aktivert" : "deaktiviert"));
                     break;
                 default:
                     answer.setText("Du hast Mist gebaut...");
@@ -343,8 +348,11 @@ public class Bot extends TelegramLongPollingBot {
             row1.add(new InlineKeyboardButton("Stop").setCallbackData("admin_stop"));
             List<InlineKeyboardButton> row2 = new ArrayList<>();
             row2.add(new InlineKeyboardButton("Alle Lobbys schließen").setCallbackData("admin_closeall"));
+            List<InlineKeyboardButton> row3 = new ArrayList<>();
+            row2.add(new InlineKeyboardButton("TestMode umstellen").setCallbackData("admin_testmode"));
             keys.add(row1);
             keys.add(row2);
+            keys.add(row3);
             keyboard.setKeyboard(keys);
             sendMarkup(message.getChatId(), "Wähle eine Aktion aus:", keyboard);
         } else {
@@ -387,7 +395,7 @@ public class Bot extends TelegramLongPollingBot {
             File f = new File("words.csv");
             f.createNewFile();
             StringTokenizer token = new StringTokenizer(new String(Files.readAllBytes(f.toPath())), ",");
-            while(token.hasMoreTokens()){
+            while (token.hasMoreTokens()) {
                 words.add(token.nextToken());
             }
             if (args.length >= 1) {
@@ -410,7 +418,7 @@ public class Bot extends TelegramLongPollingBot {
                         for (int i = 0; i < words.size(); i++) {
                             if (words.get(i).equalsIgnoreCase(args[1])) {
                                 words.remove(i);
-                                send(message.getChatId(), args[1]+" wurde entfernt.");
+                                send(message.getChatId(), args[1] + " wurde entfernt.");
                             }
                         }
                     } else {
@@ -419,11 +427,11 @@ public class Bot extends TelegramLongPollingBot {
                     }
                 } else {
                     for (int i = 0; i < args.length; i++) {
-                        if (!words.contains(args[i])&&!args[i].isEmpty()&&args[i].matches("[a-zA-Z]+")) {
+                        if (!words.contains(args[i]) && !args[i].isEmpty() && args[i].matches("[a-zA-Z]+")) {
                             words.add(args[i]);
-                            send(message.getChatId(), args[i]+" wurde hinzgefügt.");
-                        }else{
-                            send(message.getChatId(), args[i]+" gibt es schon / nicht erlaubt.");
+                            send(message.getChatId(), args[i] + " wurde hinzgefügt.");
+                        } else {
+                            send(message.getChatId(), args[i] + " gibt es schon / nicht erlaubt.");
                         }
                     }
                 }

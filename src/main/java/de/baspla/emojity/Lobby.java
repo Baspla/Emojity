@@ -83,7 +83,7 @@ public class Lobby {
     }
 
     private int getMinPlayerCount() {
-        return 3;
+        return bot.testmode?2:3;
     }
 
     public void setMaxPlayercount(int maxPlayercount) {
