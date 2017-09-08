@@ -55,7 +55,7 @@ public class Lobby {
                 if (Bot.hasOnlyEmoji(message.getText())) {
                     mastermessages.add(new PlayerMessage(message.getChatId(), message.getText()));
                 } else {
-                    bot.send(message.getChatId(), "Benutze nur Emojis");
+                    bot.send(message.getChatId(), "Benutze nur Emojis.");
                 }
             } else {
                 playermessages.add(new PlayerMessage(message.getChatId(), message.getText()));
@@ -100,7 +100,7 @@ public class Lobby {
             return;
         }
         if (isClosing()) {
-            bot.send(chatId, "Diese Lobby ist grade am Schließen.");
+            bot.send(chatId, "Diese Lobby ist grade am schließen.");
             return;
         }
         if (!isNameAvailable(username)) {
@@ -224,7 +224,7 @@ public class Lobby {
                     switch (state) {
                         case ROUND_BEGIN:
                             if (t == 5) {
-                                sendToAll("HIER WIRD NOCH WAS ERKLÄRT UND HALLO GESAGT!");
+                                sendToAll("Jede Runde wird ein Spieler zum Master und muss ein Wort nur duch Emojis beschreiben. Wer das Wort errät bekommt einen Punkt. Das Spiel endet wenn ein Spieler " + getWinPoints() + " hat.");
                             }
                             if (t <= 0) {
                                 state = Gamestate.MASTER;
@@ -238,10 +238,10 @@ public class Lobby {
                                 word = randomWord();
                                 sendToAll(
                                         master.getUsername()
-                                                + " ist Master. 30 Sekunden Vorbereitung. Wenn er nix schreibt -1 Punkt",
+                                                + " ist Master und hat 30 Sekunden Vorbereitung.",
                                         master.getChatId());
                                 bot.send(master.getChatId(), "Du bist Master. Beschreibe das Wort " + word
-                                        + ". Du hast 30 Sekunden für deine erste Beschreibung.");
+                                        + ". Du hast 30 Sekunden für deine erste Beschreibung.  Wenn du dieser Zeit nichts schreibst wird dir ein Punkt abgezogen.");
                             }
 
                             if (!mastermessages.isEmpty()) {
@@ -271,6 +271,9 @@ public class Lobby {
                             if (t <= -1) {
                                 t = 60;
                                 playermessages.clear();
+                                sendToAll("Du hast nun 60 Sekunden um das Wort anhand der Emojis zu erraten.",
+                                        master.getChatId());
+                                bot.send(master.getChatId(), "Du hast jetzt 60 Sekunden um das Wort weiter zu beschreiben.");
                             }
                             for (int i = 0; i < mastermessages.size(); i++) {
                                 if (!mastermessages.get(i).isIssent()) {

@@ -200,7 +200,7 @@ public class Bot extends TelegramLongPollingBot {
 
     private void cmd_start(Message message, String[] args) {
         send(message.getChatId(),
-                "Herzlich willkommen!\nWenn du direkt anfangen willst: /play\nUnd f�r eine Liste von Befehlen: /help");
+                "Herzlich willkommen!\nWenn du direkt anfangen willst: /play\nUnd für eine Liste von Befehlen: /help");
     }
 
     private void cmd_help(Message message, String[] args) {
@@ -208,8 +208,8 @@ public class Bot extends TelegramLongPollingBot {
                 "/help - Zeigt diesen Hilfetext\n" + //
                 "/lobbys - Listet alle Lobbys auf\n" + //
                 "/join <b>Lobby</b> <i>(Name)</i> - Tritt einer bestimmten Lobby bei\n" + //
-                "/play <i>(Name)</i> - Tritt einer zuf�lligen Lobby bei\n" + //
-                "/leave - Verl�sst die aktuelle Lobby\n" + //
+                "/play <i>(Name)</i> - Tritt einer zufälligen Lobby bei\n" + //
+                "/leave - Verlässt die aktuelle Lobby\n" + //
                 "/stats - Zeigt deine Statistiken an\n" + //
                 "/points - Zeigt die aktuellen Punkte in deiner Lobby an\n" + //
                 "/impressum - Zeigt das Impressum an\n" + //
@@ -235,7 +235,7 @@ public class Bot extends TelegramLongPollingBot {
 
     private void cmd_join(Message message, String[] args) {
         if (getLobbyByUser(message.getChatId()) != null) {
-            send(message.getChatId(), "Du bist schon in einer Lobby");
+            send(message.getChatId(), "Du bist schon in einer Lobby.");
             return;
         }
         if (args.length == 0) {
