@@ -26,12 +26,14 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.OpenOption;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 public class Bot extends TelegramLongPollingBot {
 
     private static final int MAX_LOBBYS = 20;
-    private static char[] additionalChars = {65024, 65025, 65026, 65027, 65028, 65029, 65030, 65031, 65032, 65033,
+    private static char[] additionalChars = {13, 65024, 65025, 65026, 65027, 65028, 65029, 65030, 65031, 65032, 65033,
             65034, 65035, 65036, 65037, 65038, 65039, 9792, 9793, 8205};
     private String BOTNAME;
     private String BOTTOKEN;
@@ -194,6 +196,9 @@ public class Bot extends TelegramLongPollingBot {
             case "impressum":
                 cmd_impressum(message, args);
                 break;
+            case "rechtliches":
+                cmd_rechtliches(message, args);
+                break;
             case "word":
                 cmd_word(message, args);
                 break;
@@ -328,7 +333,7 @@ public class Bot extends TelegramLongPollingBot {
     private void cmd_stats(Message message, String[] args) {
         PlayerInformation pinfo = loadPlayerInformation(message.getChatId());
         send(message.getChatId(),
-                "Du hast bisher " + pinfo.getPoints() + " Punkt" + (pinfo.getPoints() == 1 ? "." : "e."));
+                "Du hast bisher " + pinfo.getPoints() + " Sieg" + (pinfo.getPoints() == 1 ? "." : "e."));
     }
 
     private void cmd_points(Message message, String[] args) {
@@ -382,7 +387,46 @@ public class Bot extends TelegramLongPollingBot {
 
     private void cmd_impressum(Message message, String[] args) {
         send(message.getChatId(),
-                "Dieser Bot wird von @TimMorgner entwickelt und verwaltet.\nThis bot was made by @TimMorgner.");
+                "Dieser Bot wird von @TimMorgner entwickelt und verwaltet. Die Wörter werden aus dem Internet gesammelt und ich kann nicht alle auf Erklärbarkeit oder politische Korrektheit prüfen.\nBitte benehmt euch spielt fair.\nThis bot was made by @TimMorgner.\nPlay fair and keep it cool.\n/rechtliches");
+    }
+
+    private void cmd_rechtliches(Message message, String[] args) {
+
+        try {
+            File f = new File("disclaimer.txt");
+            if(!f.exists()){
+                f.createNewFile();
+                String t = "<b>Haftung für Inhalte</b>\n" +
+                        "Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesem Bot nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.\n" +
+                        "Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.\n" +
+                        "\n" +
+                        "<b>Haftung für Links</b>\n" +
+                        "Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.\n" +
+                        "Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.\n" +
+                        "\n" +
+                        "<b>Urheberrecht</b>\n" +
+                        "Die durch die Botbetreiber erstellten Inhalte und Werke auf diesem Bot unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieses Bots sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.\n" +
+                        "Soweit die Inhalte in diesem Bot nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.\n" +
+                        "\n" +
+                        "<b>Datenschutz</b>\n" +
+                        "Die Betreiber dieses Bot nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.\n" +
+                        "Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit in unserem Bot personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben.\n" +
+                        "Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.\n" +
+                        "\n" +
+                        "<b>Recht auf Auskunft, Löschung, Sperrung</b>\n" +
+                        "Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden.\n" +
+                        "\n" +
+                        "<b>Widerspruch Werbe-Mails</b>\n" +
+                        "Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen. Die Betreiber des Bots behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-E-Mails, vor.";
+                Files.write(f.toPath(),t.getBytes());
+            }
+            String txt = new String(Files.readAllBytes(f.toPath()));
+            send(message.getChatId(),
+                    txt
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void cmd_word(Message message, String[] args) {

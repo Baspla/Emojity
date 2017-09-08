@@ -329,7 +329,7 @@ public class Lobby {
             private boolean checkforwin() {
                 for (int i = 0; i < playerlist.size(); i++) {
                     if (playerlist.get(i).getPoints() >= getWinPoints()) {
-                        sendToAll(playerlist.get(i) + " hat gewonnen!");
+                        sendToAll(playerlist.get(i).getUsername() + " hat gewonnen!");
                         PlayerInformation pi = bot.loadPlayerInformation(playerlist.get(i).getChatId());
                         pi.setPoints(pi.getPoints() + 1);
                         bot.update(pi);
