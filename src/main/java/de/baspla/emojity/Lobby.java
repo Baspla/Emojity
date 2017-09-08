@@ -61,7 +61,8 @@ public class Lobby {
                 playermessages.add(new PlayerMessage(message.getChatId(), message.getText()));
             }
         } else if (isIdle() || isPreparing()) {
-            sendToAll(getPlayer(message.getChatId()).getUsername() + "<b>:</b> " + message.getText()+" --- "+randomWord(),
+            bot.send(message.getChatId(), randomWord());
+            sendToAll(getPlayer(message.getChatId()).getUsername() + "<b>:</b> " + message.getText(),
                     message.getChatId());
         }
     }
