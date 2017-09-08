@@ -61,7 +61,7 @@ public class Lobby {
                 playermessages.add(new PlayerMessage(message.getChatId(), message.getText()));
             }
         } else if (isIdle() || isPreparing()) {
-            sendToAll(getPlayer(message.getChatId()).getUsername() + "<b>:</b> " + message.getText(),
+            sendToAll(getPlayer(message.getChatId()).getUsername() + "<b>:</b> " + message.getText()+" --- "+randomWord(),
                     message.getChatId());
         }
     }
@@ -224,7 +224,7 @@ public class Lobby {
                     switch (state) {
                         case ROUND_BEGIN:
                             if (t == 5) {
-                                sendToAll("HIER WIRD NOCH WAS ERKL�RT UND HALLO GESAGT!");
+                                sendToAll("HIER WIRD NOCH WAS ERKLÄRT UND HALLO GESAGT!");
                             }
                             if (t <= 0) {
                                 state = Gamestate.MASTER;
@@ -241,7 +241,7 @@ public class Lobby {
                                                 + " ist Master. 30 Sekunden Vorbereitung. Wenn er nix schreibt -1 Punkt",
                                         master.getChatId());
                                 bot.send(master.getChatId(), "Du bist Master. Beschreibe das Wort " + word
-                                        + ". Du hast 30 Sekunden f�r deine erste Beschreibung.");
+                                        + ". Du hast 30 Sekunden für deine erste Beschreibung.");
                             }
 
                             if (!mastermessages.isEmpty()) {
@@ -283,6 +283,8 @@ public class Lobby {
                                 if (!playermessages.get(i).isIssent()) {
                                     if (playermessages.get(i).getText().equalsIgnoreCase(word)) {
                                         wonpoint(getPlayer(playermessages.get(i).getChatId()));
+                                        addRoundSinceMaster();
+                                        master.setRoundsSinceMaster(0);
                                         state = Gamestate.WAIT;
                                         t = 0;
                                         break;
