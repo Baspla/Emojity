@@ -333,6 +333,7 @@ public class Lobby {
                         PlayerInformation pi = bot.loadPlayerInformation(playerlist.get(i).getChatId());
                         pi.setPoints(pi.getPoints() + 1);
                         bot.update(pi);
+                        stopGame();
                         return true;
                     }
                 }
