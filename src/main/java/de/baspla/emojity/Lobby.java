@@ -61,7 +61,6 @@ public class Lobby {
                 playermessages.add(new PlayerMessage(message.getChatId(), message.getText()));
             }
         } else if (isIdle() || isPreparing()) {
-            bot.send(message.getChatId(), randomWord());
             sendToAll(getPlayer(message.getChatId()).getUsername() + "<b>:</b> " + message.getText(),
                     message.getChatId());
         }
@@ -101,7 +100,7 @@ public class Lobby {
             return;
         }
         if (isClosing()) {
-            bot.send(chatId, "Diese Lobby ist grade am Schlie�en.");
+            bot.send(chatId, "Diese Lobby ist grade am Schließen.");
             return;
         }
         if (!isNameAvailable(username)) {
@@ -368,7 +367,7 @@ public class Lobby {
 
     public String randomWord() {
         if (words.length <= 0) {
-            return "ERROR";
+            return "@TimMorgner 'Die Liste ist leer'";
         }
         int i = new Random().nextInt(words.length);
         return words[i];
@@ -458,7 +457,7 @@ public class Lobby {
             case PREPARING:
                 return "warten";
             case CLOSING:
-                return "schlie�t";
+                return "schließt";
             default:
                 return "LIMBO? @TimMorgner anschreiben.";
         }

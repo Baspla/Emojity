@@ -342,11 +342,11 @@ public class Bot extends TelegramLongPollingBot {
             List<InlineKeyboardButton> row1 = new ArrayList<>();
             row1.add(new InlineKeyboardButton("Stop").setCallbackData("admin_stop"));
             List<InlineKeyboardButton> row2 = new ArrayList<>();
-            row2.add(new InlineKeyboardButton("Alle Lobbys schlie�en").setCallbackData("admin_closeall"));
+            row2.add(new InlineKeyboardButton("Alle Lobbys schließen").setCallbackData("admin_closeall"));
             keys.add(row1);
             keys.add(row2);
             keyboard.setKeyboard(keys);
-            sendMarkup(message.getChatId(), "W�hle eine Aktion aus:", keyboard);
+            sendMarkup(message.getChatId(), "Wähle eine Aktion aus:", keyboard);
         } else {
             if (args.length >= 1) {
                 if (args[0].equals(BOTTOKEN)) {
@@ -364,9 +364,9 @@ public class Bot extends TelegramLongPollingBot {
         PlayerInformation pinfo = loadPlayerInformation(message.getChatId());
         boolean mute = pinfo.isMute();
         if (mute) {
-            send(message.getChatId(), "Du erh�ltst wieder Benachrichtigungen.");
+            send(message.getChatId(), "Du erhältst wieder Benachrichtigungen.");
         } else {
-            send(message.getChatId(), "Du erh�ltst keine Benachrichtigungen mehr.");
+            send(message.getChatId(), "Du erhältst keine Benachrichtigungen mehr.");
         }
         pinfo.setMute(!mute);
         update(pinfo);
