@@ -2,14 +2,14 @@ package de.baspla.emojity;
 
 import de.baspla.emojity.db.PlayerInformation;
 import org.telegram.telegrambots.api.objects.Message;
+import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboard;
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Random;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Lobby {
 
@@ -83,7 +83,7 @@ public class Lobby {
     }
 
     private int getMinPlayerCount() {
-        return bot.testmode?2:3;
+        return bot.testmode ? 2 : 3;
     }
 
     public void setMaxPlayercount(int maxPlayercount) {
@@ -130,6 +130,12 @@ public class Lobby {
     private void sendToAll(String string) {
         for (int i = 0; i < playerlist.size(); i++) {
             bot.send(playerlist.get(i).getChatId(), string);
+        }
+    }
+
+    private void sendToAll(String string, ReplyKeyboard replyKeyboard) {
+        for (int i = 0; i < playerlist.size(); i++) {
+            bot.sendMarkup(playerlist.get(i).getChatId(), string, replyKeyboard);
         }
     }
 
@@ -329,7 +335,11 @@ public class Lobby {
             private boolean checkforwin() {
                 for (int i = 0; i < playerlist.size(); i++) {
                     if (playerlist.get(i).getPoints() >= getWinPoints()) {
-                        sendToAll(playerlist.get(i).getUsername() + " hat gewonnen!");
+                        List<List<InlineKeyboardButton>> keys = new ArrayList<>();
+                        List<InlineKeyboardButton> row1 = new ArrayList<>();
+                        row1.add(new InlineKeyboardButton().setUrl("https://telegram.me/storebot?start=emojitybot").setText("Emojity bewerten"));
+                        keys.add(row1);
+                        sendToAll(playerlist.get(i).getUsername() + " hat gewonnen!", new InlineKeyboardMarkup().setKeyboard(keys));
                         PlayerInformation pi = bot.loadPlayerInformation(playerlist.get(i).getChatId());
                         pi.setPoints(pi.getPoints() + 1);
                         bot.update(pi);
