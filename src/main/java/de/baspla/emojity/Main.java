@@ -40,7 +40,7 @@ public class Main {
 
 		// Einstellungen laden oder zum ersten mal setzen
 		String name = properties.getProperty("botname", "EmojityBot");
-		String token = properties.getProperty("apitoken", "323107526:AAHo4ovXIHU__Zu_mTdUDBz7Ggvp4H9jtAQ");
+		String token = properties.getProperty("apitoken", "");
 		properties.setProperty("botname", name);
 		properties.setProperty("apitoken",token);
 		// Einstellungen Speichern
