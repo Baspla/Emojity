@@ -1,2 +1,4 @@
-<a href="http://gitlab.lgsit.de/bots/emojity/commits/master"><img alt="build status" src="http://gitlab.lgsit.de/bots/emojity/badges/master/build.svg" /></a>
-![Support Server Invite](https://img.shields.io/badge/Spaß-spaßig-green.svg?style=flat-square)
+Altes Spiel in Telegram, in dem man Worte nur anhand von Emoji erraten musste.
+Dabei habe ich einiges über Unicode gelernt.
+
+Dieses Programm wurde noch in meiner Schulzeit erstellt.
